@@ -7,66 +7,66 @@
     <style>
         :root { 
             --bg: #0f0b08; 
-            --panel: rgba(38, 28, 20, 0.8); 
-            --accent: #ff9d00; 
-            --text: #fef3c7; 
+            --panel: rgba(38, 28, 20, 0.85); 
+            --accent: #ff9d00; /* THE GOLD AMBER */
+            --text-main: #fef3c7; /* CREAMY TEXT */
         }
         
         body { 
             background: radial-gradient(circle at center, #261c14 0%, #0f0b08 100%); 
-            color: var(--text); font-family: 'Segoe UI', Roboto, sans-serif; 
+            color: var(--text-main); font-family: 'Segoe UI', Roboto, sans-serif; 
             margin: 0; display: flex; flex-direction: column; align-items: center; 
-            height: 100vh; overflow: hidden;
+            min-height: 100vh; overflow-x: hidden;
         }
         
-        .status-bar { width: 100%; padding: 8px 25px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.7rem; opacity: 0.6; box-sizing: border-box; color: var(--accent); }
+        .status-bar { width: 100%; padding: 8px 25px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.7rem; opacity: 0.6; color: var(--accent); }
 
-        .logo-container { margin-top: 5px; display: flex; flex-direction: column; align-items: center; }
-        .main-logo { width: 50px; height: 50px; filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.4)); }
-        .brand-name { letter-spacing: 10px; font-weight: 200; font-size: 1.4rem; margin: 2px 0 0 0; color: white; }
+        .logo-container { margin-top: 10px; display: flex; flex-direction: column; align-items: center; }
+        .main-logo { width: 50px; height: 50px; filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.5)); }
+        
+        /* FORCED BRAND COLOR */
+        .brand-name { 
+            letter-spacing: 10px; font-weight: 300; font-size: 1.6rem; margin: 5px 0 0 0; 
+            color: var(--accent) !important; /* Forces Amber */
+            text-shadow: 0 0 15px rgba(255, 157, 0, 0.3);
+        }
 
-        .hero { margin-top: 0px; text-align: center; }
-        #clock { font-size: 3.2rem; font-weight: 200; margin: 0; color: var(--accent); }
+        .hero { margin-top: 5px; text-align: center; }
+        #clock { font-size: 3.5rem; font-weight: 200; margin: 0; color: var(--accent); }
         .search-box { 
-            margin: 5px auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.2);
+            margin: 5px auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.3);
             padding: 10px 25px; border-radius: 50px; width: 300px; color: #94a3b8; font-size: 0.8rem;
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* INCREASED SIZE & PUSHED UP */
         .app-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; padding: 10px; max-width: 950px; width: 95%; 
+            gap: 15px; padding: 15px; max-width: 950px; width: 95%; 
             margin-top: 5px;
-            margin-bottom: 100px; /* This forces the buttons to stay ABOVE the dock area */
         }
+        
         .card { 
             background: var(--panel); border: 2px solid rgba(255,157,0,0.2); 
-            border-radius: 24px; 
-            padding: 30px 5px; 
-            text-decoration: none; 
-            color: white; display: flex; flex-direction: column; align-items: center; 
+            border-radius: 24px; padding: 30px 5px; text-decoration: none; 
+            display: flex; flex-direction: column; align-items: center; 
             transition: 0.2s; backdrop-filter: blur(12px);
         }
-        .card:hover { transform: scale(1.05); border-color: var(--accent); background: rgba(255,157,0,0.1); }
+        .card:hover { transform: scale(1.02); border-color: var(--accent); background: rgba(255,157,0,0.1); }
         
-        .icon { font-size: 2.5rem; margin-bottom: 12px; } 
+        .icon { font-size: 2.5rem; margin-bottom: 12px; filter: drop-shadow(0 0 5px rgba(255,157,0,0.2)); } 
+        
+        /* FORCED LABEL COLOR */
         .label { 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            color: var(--text); 
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; 
+            color: var(--accent) !important; /* Forces Amber */
             font-weight: 700; 
         }
 
-        /* DOCK LOCKED TO THE VERY BOTTOM */
+        .dock-wrapper { width: 100%; display: flex; justify-content: center; padding-bottom: 30px; margin-top: auto; }
         .dock { 
-            position: fixed; bottom: 20px;
-            background: rgba(15, 10, 5, 0.98); 
-            backdrop-filter: blur(20px); padding: 12px 35px; border-radius: 50px; 
-            border: 1px solid rgba(255,157,0,0.3); display: flex; gap: 35px; 
-            align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-            z-index: 999;
+            background: rgba(15, 10, 5, 0.98); backdrop-filter: blur(20px); 
+            padding: 12px 35px; border-radius: 50px; border: 1px solid rgba(255,157,0,0.4); 
+            display: flex; gap: 35px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9);
         }
         .dock-icon { font-size: 2rem; cursor: pointer; color: var(--accent); }
     </style>
@@ -82,13 +82,13 @@
         <svg class="main-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="48" stroke="#ff9d00" stroke-width="2" stroke-dasharray="10 5"/>
             <path d="M35 30V70C35 70 65 70 65 50C65 30 35 30 35 30Z" stroke="#ff9d00" stroke-width="4" stroke-linejoin="round"/>
-            <path d="M35 50H45L50 40L55 60L60 50H70" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M35 50H45L50 40L55 60L60 50H70" stroke="#fef3c7" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <h1 class="brand-name">DEINESTY</h1>
     </div>
 
     <div class="hero">
-        <h1 id="clock">12:00</h1>
+        <h1 id="clock">00:00</h1>
         <div class="search-box"><span>🔍</span> Search Systems...</div>
     </div>
 
@@ -104,17 +104,19 @@
         <a href="#" class="card"><div class="icon">📰</div><div class="label">News</div></a>
         <a href="#" class="card"><div class="icon">📝</div><div class="label">Notes</div></a>
         <a href="#" class="card"><div class="icon">🔢</div><div class="label">Calculator</div></a>
-        <a href="#" class="card" style="border-color: var(--accent); background: rgba(255,157,0,0.15); box-shadow: 0 0 20px rgba(255,157,0,0.1);">
-            <div class="icon">💎</div><div class="label" style="color: var(--accent);">Pro Systems</div>
+        <a href="#" class="card" style="background: rgba(255,157,0,0.15);">
+            <div class="icon">💎</div><div class="label">Pro Systems</div>
         </a>
     </div>
 
-    <div class="dock">
-        <div class="dock-icon">⭕</div>
-        <div class="dock-icon">🌐</div>
-        <div class="dock-icon">✉️</div>
-        <div class="dock-icon">📂</div>
-        <div class="dock-icon">⚙️</div>
+    <div class="dock-wrapper">
+        <div class="dock">
+            <div class="dock-icon">⭕</div>
+            <div class="dock-icon">🌐</div>
+            <div class="dock-icon">✉️</div>
+            <div class="dock-icon">📂</div>
+            <div class="dock-icon">⚙️</div>
+        </div>
     </div>
 
     <script>

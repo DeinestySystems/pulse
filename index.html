@@ -3,33 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deinesty Pulse | Command Center</title>
+    <title>Deinesty Pulse | Systems Command</title>
     <style>
-        :root { --bg: #0a0f1e; --panel: #161e2d; --accent: #00f2ff; --text: #e2e8f0; }
-        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .pulse-line { width: 100px; height: 4px; background: var(--accent); margin: 10px 0; border-radius: 2px; animation: glow 2s infinite; }
-        @keyframes glow { 0%, 100% { opacity: 0.3; width: 50px; } 50% { opacity: 1; width: 120px; box-shadow: 0 0 15px var(--accent); } }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; max-width: 600px; margin-top: 30px; }
-        .card { background: var(--panel); aspect-ratio: 1/1; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit; border: 1px solid #2d3748; transition: 0.3s; }
-        .card:hover { border-color: var(--accent); transform: scale(1.05); }
-        .emoji { font-size: 2rem; }
-        .label { font-size: 0.7rem; margin-top: 8px; letter-spacing: 1px; color: #94a3b8; text-transform: uppercase; }
+        :root { 
+            --bg: #0a0f1e; 
+            --panel: #161e2d; 
+            --accent: #00f2ff; 
+            --text: #e2e8f0; 
+        }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        /* The Pulse Branding */
+        .header { text-align: center; margin-top: 40px; margin-bottom: 20px; }
+        h1 { letter-spacing: 8px; margin: 0; font-weight: 300; font-size: 2rem; }
+        
+        .pulse-line { 
+            width: 100px; 
+            height: 3px; 
+            background: var(--accent); 
+            margin: 15px auto; 
+            border-radius: 10px;
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.2; width: 60px; box-shadow: 0 0 0px var(--accent); }
+            50% { opacity: 1; width: 120px; box-shadow: 0 0 15px var(--accent); }
+            100% { opacity: 0.2; width: 60px; box-shadow: 0 0 0px var(--accent); }
+        }
+
+        .status-text { 
+            font-size: 0.7rem; 
+            color: var(--accent); 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            margin-bottom: 40px;
+        }
+
+        /* The Dashboard Grid */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            width: 100%; 
+            max-width: 500px; 
+        }
+
+        .card { 
+            background: var(--panel); 
+            aspect-ratio: 1/1; 
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            color: inherit; 
+            border: 1px solid #2d3748; 
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-5px);
+            background: #1f293a;
+        }
+
+        .icon { font-size: 2rem; margin-bottom: 10px; }
+        .label { 
+            font-size: 0.65rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: #94a3b8; 
+        }
+
+        /* Pro Suite Highlight */
+        .pro-card { 
+            border-color: var(--accent); 
+            box-shadow: inset 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
-    <div style="text-align:center; margin-top: 20px;">
-        <h1 style="letter-spacing: 7px; margin: 0; font-weight: 300;">DEINESTY</h1>
+
+    <div class="header">
+        <h1>DEINESTY</h1>
         <div class="pulse-line"></div>
-        <p style="font-size: 0.8rem; color: var(--accent); letter-spacing: 2px;">PULSE COMMAND</p>
+        <div class="status-text">Pulse Command Center</div>
     </div>
 
     <div class="grid">
-        <a href="#" class="card"><div class="emoji">📊</div><div class="label">Markets</div></a>
-        <a href="#" class="card"><div class="emoji">☁️</div><div class="label">Weather</div></a>
-        <a href="#" class="card"><div class="emoji">🧮</div><div class="label">Calc</div></a>
-        <a href="#" class="card" style="box-shadow: inset 0 0 15px rgba(0,242,255,0.2); border-color: var(--accent);">
-            <div class="emoji">💎</div><div class="label" style="color: var(--accent);">PRO SUITE</div>
+        <a href="#" class="card">
+            <div class="icon">📈</div>
+            <div class="label">Markets</div>
+        </a>
+        <a href="#" class="card">
+            <div class="icon">☁️</div>
+            <div class="label">Weather</div>
+        </a>
+        <a href="#" class="card">
+            <div class="icon">📅</div>
+            <div class="label">Planner</div>
+        </a>
+        <a href="#" class="card">
+            <div class="icon">🧮</div>
+            <div class="label">Calculator</div>
+        </a>
+        <a href="#" class="card">
+            <div class="icon">🛡️</div>
+            <div class="label">Security</div>
+        </a>
+        <a href="#" class="card pro-card">
+            <div class="icon">💎</div>
+            <div class="label" style="color: var(--accent);">Pro Systems</div>
         </a>
     </div>
+
 </body>
 </html>

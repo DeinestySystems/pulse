@@ -5,53 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEINESTY PULSE OS</title>
     <style>
-        /* UPDATED TO YOUR CHROMEBOOK THEME COLORS */
         :root { 
-            --bg: #0f0b08; /* Deep dark brown/black */
-            --panel: rgba(38, 28, 20, 0.7); /* Warm dark mahogany */
-            --accent: #ff9d00; /* Your Chromebook Amber/Orange */
-            --text: #fef3c7; /* Soft cream text */
+            --bg: #0f0b08; 
+            --panel: rgba(38, 28, 20, 0.7); 
+            --accent: #ff9d00; 
+            --text: #fef3c7; 
         }
         
         body { 
             background: radial-gradient(circle at center, #261c14 0%, #0f0b08 100%); 
             color: var(--text); font-family: 'Segoe UI', Roboto, sans-serif; 
             margin: 0; display: flex; flex-direction: column; align-items: center; 
-            min-height: 100vh; overflow-x: hidden;
+            height: 100vh; overflow: hidden; /* Prevents unwanted scrolling */
         }
         
-        .status-bar { width: 100%; padding: 10px 20px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.7rem; opacity: 0.6; box-sizing: border-box; color: var(--accent); }
+        .status-bar { width: 100%; padding: 8px 20px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.65rem; opacity: 0.5; box-sizing: border-box; color: var(--accent); }
 
-        .hero { margin-top: 20px; text-align: center; }
-        #clock { font-size: 3.5rem; font-weight: 200; margin: 0; letter-spacing: 2px; color: var(--accent); text-shadow: 0 0 20px rgba(255, 157, 0, 0.3); }
+        /* TIGHTER LOGO SECTION */
+        .logo-container { margin-top: 15px; display: flex; flex-direction: column; align-items: center; }
+        .main-logo { width: 60px; height: 60px; filter: drop-shadow(0 0 12px rgba(255, 157, 0, 0.4)); }
+        .brand-name { letter-spacing: 10px; font-weight: 200; font-size: 1.8rem; margin: 5px 0 0 0; color: white; }
+        
+        /* CENTERED HERO */
+        .hero { margin-top: 5px; text-align: center; }
+        #clock { font-size: 3rem; font-weight: 200; margin: 0; letter-spacing: 2px; color: var(--accent); }
         .search-box { 
-            margin-top: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.2);
-            padding: 10px 25px; border-radius: 50px; width: 300px; color: #94a3b8; font-size: 0.9rem;
+            margin: 10px auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.2);
+            padding: 8px 20px; border-radius: 50px; width: 280px; color: #94a3b8; font-size: 0.75rem;
             display: flex; align-items: center; gap: 10px;
         }
 
+        /* MOVED UP APP GRID */
         .app-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; padding: 40px; max-width: 850px; width: 95%; margin-bottom: 100px;
+            gap: 12px; padding: 20px; max-width: 800px; width: 95%; 
+            margin-top: 10px;
         }
         .card { 
             background: var(--panel); border: 1px solid rgba(255,157,0,0.1); 
-            border-radius: 24px; padding: 22px 5px; text-decoration: none; 
+            border-radius: 18px; padding: 15px 5px; text-decoration: none; 
             color: white; display: flex; flex-direction: column; align-items: center; 
             transition: 0.2s; backdrop-filter: blur(12px);
         }
-        .card:hover { transform: scale(1.05); border-color: var(--accent); box-shadow: 0 0 20px rgba(255, 157, 0, 0.2); }
-        .icon { font-size: 2.2rem; margin-bottom: 10px; filter: drop-shadow(0 0 5px rgba(255,157,0,0.2)); }
-        .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.2px; color: #d4a373; }
+        .card:hover { transform: scale(1.05); border-color: var(--accent); }
+        .icon { font-size: 1.8rem; margin-bottom: 5px; }
+        .label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; color: #d4a373; }
 
+        /* THE DOCK - SLIGHTLY HIGHER */
         .dock { 
-            position: fixed; bottom: 25px; background: rgba(20, 15, 10, 0.9); 
-            backdrop-filter: blur(20px); padding: 12px 25px; border-radius: 30px; 
+            position: fixed; bottom: 85px; /* Pushed up significantly to clear browser bars */
+            background: rgba(20, 15, 10, 0.9); 
+            backdrop-filter: blur(20px); padding: 10px 20px; border-radius: 30px; 
             border: 1px solid rgba(255,157,0,0.2); display: flex; gap: 20px; 
-            align-items: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
-        .dock-icon { font-size: 1.6rem; cursor: pointer; transition: 0.2s; color: var(--accent); }
-        .dock-icon:hover { transform: scale(1.2) translateY(-5px); text-shadow: 0 0 10px var(--accent); }
+        .dock-icon { font-size: 1.4rem; cursor: pointer; color: var(--accent); opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -61,9 +69,18 @@
         <span>Battery: 88%</span>
     </div>
 
+    <div class="logo-container">
+        <svg class="main-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#ff9d00" stroke-width="2" stroke-dasharray="10 5"/>
+            <path d="M35 30V70C35 70 65 70 65 50C65 30 35 30 35 30Z" stroke="#ff9d00" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M35 50H45L50 40L55 60L60 50H70" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h1 class="brand-name">DEINESTY</h1>
+    </div>
+
     <div class="hero">
         <h1 id="clock">12:00</h1>
-        <div class="search-box"><span>🔍</span> Search DEINESTY Systems...</div>
+        <div class="search-box"><span>🔍</span> Search Systems...</div>
     </div>
 
     <div class="app-grid">
@@ -71,12 +88,10 @@
         <a href="#" class="card"><div class="icon">☁️</div><div class="label">Weather</div></a>
         <a href="#" class="card"><div class="icon">📅</div><div class="label">Calendar</div></a>
         <a href="#" class="card"><div class="icon">🎬</div><div class="label">Videos</div></a>
-        
         <a href="#" class="card"><div class="icon">🎵</div><div class="label">Music</div></a>
         <a href="#" class="card"><div class="icon">🛒</div><div class="label">Shopping</div></a>
         <a href="#" class="card"><div class="icon">🏃</div><div class="label">Health</div></a>
         <a href="#" class="card"><div class="icon">📱</div><div class="label">Social</div></a>
-
         <a href="#" class="card"><div class="icon">📰</div><div class="label">News</div></a>
         <a href="#" class="card"><div class="icon">📝</div><div class="label">Notes</div></a>
         <a href="#" class="card"><div class="icon">🔢</div><div class="label">Calculator</div></a>

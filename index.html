@@ -7,7 +7,7 @@
     <style>
         :root { 
             --bg: #0f0b08; 
-            --panel: rgba(38, 28, 20, 0.7); 
+            --panel: rgba(38, 28, 20, 0.8); 
             --accent: #ff9d00; 
             --text: #fef3c7; 
         }
@@ -19,54 +19,56 @@
             height: 100vh; overflow: hidden;
         }
         
-        .status-bar { width: 100%; padding: 10px 25px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.7rem; opacity: 0.6; box-sizing: border-box; color: var(--accent); }
+        .status-bar { width: 100%; padding: 8px 25px; display: flex; justify-content: flex-end; gap: 15px; font-size: 0.7rem; opacity: 0.6; box-sizing: border-box; color: var(--accent); }
 
         .logo-container { margin-top: 5px; display: flex; flex-direction: column; align-items: center; }
-        .main-logo { width: 55px; height: 55px; filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.4)); }
-        .brand-name { letter-spacing: 10px; font-weight: 200; font-size: 1.6rem; margin: 5px 0 0 0; color: white; }
+        .main-logo { width: 50px; height: 50px; filter: drop-shadow(0 0 10px rgba(255, 157, 0, 0.4)); }
+        .brand-name { letter-spacing: 10px; font-weight: 200; font-size: 1.4rem; margin: 2px 0 0 0; color: white; }
 
         .hero { margin-top: 0px; text-align: center; }
-        #clock { font-size: 3.5rem; font-weight: 200; margin: 0; color: var(--accent); text-shadow: 0 0 15px rgba(255, 157, 0, 0.2); }
+        #clock { font-size: 3.2rem; font-weight: 200; margin: 0; color: var(--accent); }
         .search-box { 
-            margin: 8px auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.2);
-            padding: 12px 25px; border-radius: 50px; width: 320px; color: #94a3b8; font-size: 0.9rem;
+            margin: 5px auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,157,0,0.2);
+            padding: 10px 25px; border-radius: 50px; width: 300px; color: #94a3b8; font-size: 0.8rem;
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* BIGGER BUTTONS & TEXT */
+        /* INCREASED SIZE & PUSHED UP */
         .app-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; padding: 15px; max-width: 900px; width: 95%; 
-            margin-top: 10px;
+            gap: 15px; padding: 10px; max-width: 950px; width: 95%; 
+            margin-top: 5px;
+            margin-bottom: 100px; /* This forces the buttons to stay ABOVE the dock area */
         }
         .card { 
-            background: var(--panel); border: 1px solid rgba(255,157,0,0.15); 
-            border-radius: 22px; 
-            padding: 25px 5px; /* Added height */
+            background: var(--panel); border: 2px solid rgba(255,157,0,0.2); 
+            border-radius: 24px; 
+            padding: 30px 5px; 
             text-decoration: none; 
             color: white; display: flex; flex-direction: column; align-items: center; 
             transition: 0.2s; backdrop-filter: blur(12px);
         }
-        .card:hover { transform: scale(1.05); border-color: var(--accent); background: rgba(255,157,0,0.05); }
+        .card:hover { transform: scale(1.05); border-color: var(--accent); background: rgba(255,157,0,0.1); }
         
-        .icon { font-size: 2.2rem; margin-bottom: 10px; } /* Icons grew! */
+        .icon { font-size: 2.5rem; margin-bottom: 12px; } 
         .label { 
-            font-size: 0.75rem; /* Text grew! */
+            font-size: 0.85rem; 
             text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            color: #fef3c7; 
-            font-weight: 600; 
+            letter-spacing: 2px; 
+            color: var(--text); 
+            font-weight: 700; 
         }
 
+        /* DOCK LOCKED TO THE VERY BOTTOM */
         .dock { 
-            position: fixed; bottom: 35px;
-            background: rgba(20, 15, 10, 0.95); 
-            backdrop-filter: blur(20px); padding: 10px 30px; border-radius: 40px; 
-            border: 1px solid rgba(255,157,0,0.2); display: flex; gap: 30px; 
-            align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            z-index: 100;
+            position: fixed; bottom: 20px;
+            background: rgba(15, 10, 5, 0.98); 
+            backdrop-filter: blur(20px); padding: 12px 35px; border-radius: 50px; 
+            border: 1px solid rgba(255,157,0,0.3); display: flex; gap: 35px; 
+            align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            z-index: 999;
         }
-        .dock-icon { font-size: 1.8rem; cursor: pointer; color: var(--accent); }
+        .dock-icon { font-size: 2rem; cursor: pointer; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -102,7 +104,7 @@
         <a href="#" class="card"><div class="icon">📰</div><div class="label">News</div></a>
         <a href="#" class="card"><div class="icon">📝</div><div class="label">Notes</div></a>
         <a href="#" class="card"><div class="icon">🔢</div><div class="label">Calculator</div></a>
-        <a href="#" class="card" style="border-color: var(--accent); background: rgba(255,157,0,0.1);">
+        <a href="#" class="card" style="border-color: var(--accent); background: rgba(255,157,0,0.15); box-shadow: 0 0 20px rgba(255,157,0,0.1);">
             <div class="icon">💎</div><div class="label" style="color: var(--accent);">Pro Systems</div>
         </a>
     </div>

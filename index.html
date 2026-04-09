@@ -39,7 +39,6 @@
             display: flex; align-items: center; gap: 10px;
         }
 
-        /* Adjusted gap to fit 13+ apps comfortably */
         .app-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
             gap: 10px; padding: 10px; max-width: 900px; width: 92%; 
@@ -62,7 +61,14 @@
             font-weight: 700; 
         }
 
-        .dock-wrapper { width: 100%; display: flex; justify-content: center; margin-top: auto; padding-bottom: 15px; }
+        .dock-wrapper { 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            margin-top: auto; 
+            padding-bottom: 40px; /* RAISED DOCK FOR BETTER VISIBILITY */
+        }
+        
         .dock { 
             background: rgba(15, 10, 5, 0.98); backdrop-filter: blur(20px); 
             padding: 10px 30px; border-radius: 50px; border: 1px solid rgba(255,157,0,0.4); 
@@ -105,7 +111,7 @@
         <a href="https://keep.google.com" target="_blank" class="card"><div class="icon">📝</div><div class="label">Notes</div></a>
         <a href="https://www.desmos.com/scientific" target="_blank" class="card"><div class="icon">🔢</div><div class="label">Calculator</div></a>
         <a href="https://github.com" target="_blank" class="card"><div class="icon">🛠️</div><div class="label">Tools</div></a>
-        <a href="javascript:void(0)" class="card" style="background: rgba(255,157,0,0.15); grid-column: span 4;">
+        <a href="javascript:void(0)" class="card" style="background: rgba(255,157,0,0.15); grid-column: span 4; padding: 10px;">
             <div class="icon">💎</div><div class="label">Pro Systems</div>
         </a>
     </div>
